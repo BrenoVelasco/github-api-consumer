@@ -1,5 +1,5 @@
 import React from 'react'
-// import ApplicationStyle from './ApplicationStyle'
+import ApplicationStyle from './ApplicationStyle'
 import { StateProvider } from './utils/contextManagement'
 import { SET_USER } from './constants/reducers'
 
@@ -27,7 +27,7 @@ const ApplicationProvider = () => {
     <StateProvider
       initialState={initialState}
       reducer={reducer}
-      // children={<ApplicationStyle />}
+      children={<ApplicationStyle />}
     />
   )
 }
