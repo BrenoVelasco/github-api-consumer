@@ -1,8 +1,8 @@
 import React from 'react'
-import App from '../components/App'
+import Header from '../components/Header'
 
 const AppContainer = () => {
-  return <App />
+  return <Header />
 }
 
 export default AppContainer
