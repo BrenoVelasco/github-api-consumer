@@ -9,6 +9,7 @@ const useStyles = makeStyles({
     background:
       'linear-gradient(90deg, rgba(0,242,96,1) 0%, rgba(5,117,230,1) 100%)',
     height: 300,
+    marginBottom: 32,
   },
 
   containerTitle: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles({
   },
 })
 
-const App = () => {
+const Header = ({ search, setQuery }) => {
   const classes = useStyles()
 
   return (
@@ -35,11 +36,11 @@ const App = () => {
 
       <Grid container justify='center'>
         <Grid item xs={11} sm={9} lg={8}>
-          <SearchInput />
+          <SearchInput search={search} setQuery={setQuery} />
         </Grid>
       </Grid>
     </Grid>
   )
 }
 
-export default App
+export default Header

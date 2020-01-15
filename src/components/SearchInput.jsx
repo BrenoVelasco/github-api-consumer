@@ -24,20 +24,27 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const SearchInput = () => {
+const SearchInput = ({ search, setQuery }) => {
   const classes = useStyles()
 
+  const handleKeyPress = event => {
+    if (event.key === 'Enter') {
+      search()
+    }
+  }
+
   return (
-    <Paper component='form' className={classes.root}>
+    <Paper className={classes.root} onKeyPress={handleKeyPress}>
       <InputBase
         className={classes.input}
         placeholder='Procurar usuários do GitHub'
         inputProps={{ 'aria-label': 'search GitHub' }}
+        onChange={event => setQuery(event.target.value)}
       />
       <IconButton
-        type='submit'
         className={classes.iconButton}
         aria-label='search'
+        onClick={search}
       >
         <SearchIcon />
       </IconButton>
