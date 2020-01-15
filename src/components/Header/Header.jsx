@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
 })
 
-const Header = ({ search, setQuery }) => {
+const Header = ({ search, query, setQuery }) => {
   const classes = useStyles()
 
   return (
@@ -36,7 +36,7 @@ const Header = ({ search, setQuery }) => {
 
       <Grid container justify='center'>
         <Grid item xs={11} sm={9} lg={8}>
-          <SearchInput search={search} setQuery={setQuery} />
+          <SearchInput search={search} query={query} setQuery={setQuery} />
         </Grid>
       </Grid>
     </Grid>

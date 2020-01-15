@@ -24,9 +24,15 @@ const AppContainer = () => {
     null
   )
 
+  const search = () => {
+    if (query !== '') {
+      fetchUsers()
+    }
+  }
+
   return (
     <>
-      <Header search={fetchUsers} setQuery={setQuery} />
+      <Header search={search} query={query} setQuery={setQuery} />
       <UsersCards
         users={users.items ? users.items : []}
         statusRequestUsers={statusRequestUsers}

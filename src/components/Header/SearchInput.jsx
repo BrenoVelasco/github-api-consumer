@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const SearchInput = ({ search, setQuery }) => {
+const SearchInput = ({ search, query, setQuery }) => {
   const classes = useStyles()
 
   const handleKeyPress = event => {
@@ -45,6 +45,7 @@ const SearchInput = ({ search, setQuery }) => {
         className={classes.iconButton}
         aria-label='search'
         onClick={search}
+        disabled={!query}
       >
         <SearchIcon />
       </IconButton>
