@@ -26,7 +26,7 @@ const AppContainer = () => {
     null
   )
 
-  const [user, statusRequestUser, fetchUser] = useRequest(
+  const [, , fetchUser] = useRequest(
     [],
     {
       url: `users/${usersBuffer.login}`,
@@ -48,6 +48,7 @@ const AppContainer = () => {
     if (usersBuffer.login) {
       fetchUser()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [usersBuffer])
 
   const search = () => {

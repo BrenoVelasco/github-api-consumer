@@ -61,7 +61,7 @@ const UsersCards = ({
         <ExpansionPanel
           key={user.id}
           expanded={expandedUsers.map(el => el.login).includes(user.login)}
-          onClick={() => {
+          onChange={() => {
             handlePanelChange(user.login)
           }}
         >
