@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { find, remove } from 'lodash'
 import {
   Avatar,
   ExpansionPanel,
@@ -19,13 +20,51 @@ const useStyles = makeStyles({
   },
 })
 
-const UsersCards = ({ users, statusRequestUsers, pagination }) => {
+const UsersCards = ({
+  users,
+  statusRequestUsers,
+  pagination,
+  storedUsers,
+  setUsersBuffer,
+}) => {
   const classes = useStyles()
+
+  const [expandedUsers, setExpandedUsers] = useState([])
+
+  const handleFetch = login => {
+    // Checks if this request was already made. If not, fetches and updates buffer's state
+    if (!storedUsers.find(el => el.login === login)) {
+      setUsersBuffer({ login: login })
+    }
+  }
+
+  const handlePanelChange = login => {
+    if (!statusRequestUsers.isLoading) {
+      if (
+        find(expandedUsers, {
+          login: login,
+        })
+      ) {
+        remove(expandedUsers, { login: login })
+        setExpandedUsers([...expandedUsers])
+      } else {
+        setExpandedUsers([...expandedUsers, { login: login }])
+
+        handleFetch(login)
+      }
+    }
+  }
 
   const renderUsersCards = () => {
     if (users.length > 0 && !statusRequestUsers.isLoading) {
       return users.map(user => (
-        <ExpansionPanel>
+        <ExpansionPanel
+          key={user.id}
+          expanded={expandedUsers.map(el => el.login).includes(user.login)}
+          onClick={() => {
+            handlePanelChange(user.login)
+          }}
+        >
           <ExpansionPanelSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls={`${user.id}-content`}
@@ -41,7 +80,9 @@ const UsersCards = ({ users, statusRequestUsers, pagination }) => {
             </Grid>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <UserCardDetails />
+            <UserCardDetails
+              userDetails={storedUsers.find(el => el.login === user.login)}
+            />
           </ExpansionPanelDetails>
         </ExpansionPanel>
       ))

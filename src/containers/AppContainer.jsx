@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRequest } from '../utils/hooks'
 import Header from '../components/Header/Header.jsx'
 import UsersCards from '../components/UsersList/UsersCards.jsx'
@@ -7,6 +7,8 @@ const AppContainer = () => {
   const pagination = 20
 
   const [query, setQuery] = useState('')
+  const [storedUsers, setStoredUsers] = useState([])
+  const [usersBuffer, setUsersBuffer] = useState([])
 
   const [users, statusRequestUsers, fetchUsers] = useRequest(
     [],
@@ -24,6 +26,30 @@ const AppContainer = () => {
     null
   )
 
+  const [user, statusRequestUser, fetchUser] = useRequest(
+    [],
+    {
+      url: `users/${usersBuffer.login}`,
+      method: 'get',
+      headers: {
+        Accept: 'application/vnd.github.v3+json',
+      },
+    },
+    null,
+    {
+      onComplete: data => {
+        // populates in an array of users already fetched
+        setStoredUsers([...storedUsers, data])
+      },
+    }
+  )
+
+  useEffect(() => {
+    if (usersBuffer.login) {
+      fetchUser()
+    }
+  }, [usersBuffer])
+
   const search = () => {
     if (query !== '') {
       fetchUsers()
@@ -37,6 +63,8 @@ const AppContainer = () => {
         users={users.items ? users.items : []}
         statusRequestUsers={statusRequestUsers}
         pagination={pagination}
+        storedUsers={storedUsers}
+        setUsersBuffer={setUsersBuffer}
       />
     </>
   )
