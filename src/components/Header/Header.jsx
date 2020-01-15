@@ -3,7 +3,7 @@ import { Grid, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import SearchInput from './SearchInput.jsx'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   container: {
     width: '100%',
     background:
@@ -16,8 +16,12 @@ const useStyles = makeStyles({
     color: '#fff',
     textAlign: 'center',
     marginBottom: 24,
+    fontSize: 40,
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 32,
+    },
   },
-})
+}))
 
 const Header = ({ search, query, setQuery }) => {
   const classes = useStyles()
