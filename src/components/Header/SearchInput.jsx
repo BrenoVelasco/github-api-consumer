@@ -2,11 +2,8 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import InputBase from '@material-ui/core/InputBase'
-import Divider from '@material-ui/core/Divider'
 import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
 import SearchIcon from '@material-ui/icons/Search'
-import DirectionsIcon from '@material-ui/icons/Directions'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,7 +34,7 @@ const SearchInput = ({ search, query, setQuery }) => {
     <Paper className={classes.root} onKeyPress={handleKeyPress}>
       <InputBase
         className={classes.input}
-        placeholder='Procurar usuários do GitHub'
+        placeholder='Procurar usuários do GitHub...'
         inputProps={{ 'aria-label': 'search GitHub' }}
         onChange={event => setQuery(event.target.value)}
       />
