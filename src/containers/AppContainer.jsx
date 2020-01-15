@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useRequest } from '../utils/hooks'
-import Header from '../components/Header'
-import UsersCards from '../components/UsersCards'
+import Header from '../components/Header/Header.jsx'
+import UsersCards from '../components/UsersList/UsersCards.jsx'
 
 const AppContainer = () => {
   const pagination = 20
