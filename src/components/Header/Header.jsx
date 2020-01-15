@@ -6,8 +6,7 @@ import SearchInput from './SearchInput.jsx'
 const useStyles = makeStyles(theme => ({
   container: {
     width: '100%',
-    background:
-      'linear-gradient(90deg, rgba(0,242,96,1) 0%, rgba(5,117,230,1) 100%)',
+    background: `linear-gradient(90deg, ${theme.palette.secondary.main} 0%, ${theme.palette.primary.main} 100%)`,
     height: 300,
     marginBottom: 32,
   },
@@ -35,7 +34,7 @@ const Header = ({ search, query, setQuery }) => {
       className={classes.container}
     >
       <Typography variant='h1' className={classes.containerTitle}>
-        GitHub nas suas mãos.
+        <span style={{ fontWeight: 600 }}>GitHub</span> nas suas mãos.
       </Typography>
 
       <Grid container justify='center'>
