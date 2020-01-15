@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
   icon: {
-    fontSize: 72,
+    fontSize: 64,
     color: '#999',
     marginLeft: 'auto',
     marginRight: 'auto',
@@ -26,7 +26,7 @@ const EmptyList = () => {
     <Grid container justify='center'>
       <Grid item xs={12}>
         <ListIcon className={classes.icon} />
-        <Typography variant='h4' className={classes.message}>
+        <Typography variant='h5' className={classes.message}>
           Nenhum resultado. Use a busca acima para encontrar usuários!
         </Typography>
       </Grid>
