@@ -72,7 +72,7 @@ const UsersCards = ({
           >
             <Grid container alignItems='center'>
               <Avatar
-                alt={`Avatar do login ${user.login}`}
+                alt={`Avatar - ${user.login}`}
                 src={user.avatar_url}
                 className={classes.avatar}
               />

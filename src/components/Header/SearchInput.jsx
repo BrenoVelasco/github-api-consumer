@@ -4,6 +4,8 @@ import Paper from '@material-ui/core/Paper'
 import InputBase from '@material-ui/core/InputBase'
 import IconButton from '@material-ui/core/IconButton'
 import SearchIcon from '@material-ui/icons/Search'
+import { useStateValue } from '../../utils/contextManagement'
+import { languages } from '../../constants/languages'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,6 +24,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const SearchInput = ({ search, query, setQuery }) => {
+  const [{ language }] = useStateValue()
   const classes = useStyles()
 
   const handleKeyPress = event => {
@@ -34,7 +37,10 @@ const SearchInput = ({ search, query, setQuery }) => {
     <Paper className={classes.root} onKeyPress={handleKeyPress}>
       <InputBase
         className={classes.input}
-        placeholder='Procurar usuários do GitHub...'
+        placeholder={`${
+          languages.find(el => el.id === language.id).text
+            .searchInputPlaceholder
+        }`}
         inputProps={{ 'aria-label': 'search GitHub' }}
         onChange={event => setQuery(event.target.value)}
       />

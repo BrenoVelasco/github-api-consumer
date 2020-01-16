@@ -1,7 +1,7 @@
 import React from 'react'
 import ApplicationStyle from './ApplicationStyle'
 import { StateProvider } from './utils/contextManagement'
-import { SET_USER } from './constants/reducers'
+import { SET_USER, SET_LANGUAGE } from './constants/reducers'
 
 /**
  * Application layer that handles global variables
@@ -9,6 +9,10 @@ import { SET_USER } from './constants/reducers'
 const ApplicationProvider = () => {
   const initialState = {
     user: null,
+    language: {
+      id: 'pt-BR',
+      name: 'Português',
+    },
   }
 
   const reducer = (state, action) => {
@@ -17,6 +21,11 @@ const ApplicationProvider = () => {
         return {
           ...state,
           user: action.value,
+        }
+      case SET_LANGUAGE:
+        return {
+          ...state,
+          language: action.value,
         }
       default:
         return state

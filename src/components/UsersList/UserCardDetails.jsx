@@ -2,12 +2,12 @@ import React from 'react'
 import { CircularProgress, Grid, Link, Typography } from '@material-ui/core'
 import {
   Check as CheckIcon,
-  ChevronRight as ChevronRightIcon,
   Close as CloseIcon,
-  Email as EmailIcon,
   MyLocation as MyLocationIcon,
 } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles'
+import { useStateValue } from '../../utils/contextManagement'
+import { languages } from '../../constants/languages'
 
 const useStyles = makeStyles(theme => ({
   headerParagraph: {
@@ -42,6 +42,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const UserCardDetails = ({ userDetails }) => {
+  const [{ language }] = useStateValue()
   const classes = useStyles()
 
   return (
@@ -53,7 +54,7 @@ const UserCardDetails = ({ userDetails }) => {
               <span className={classes.headerParagraphSpecial}>
                 {userDetails.followers}
               </span>{' '}
-              seguidores
+              {languages.find(el => el.id === language.id).text.followers}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -61,7 +62,7 @@ const UserCardDetails = ({ userDetails }) => {
               <span className={classes.headerParagraphSpecial}>
                 {userDetails.public_repos}
               </span>{' '}
-              repositórios públicos
+              {languages.find(el => el.id === language.id).text.publicRepos}
             </Typography>
           </Grid>
           {userDetails.bio && (
@@ -75,7 +76,8 @@ const UserCardDetails = ({ userDetails }) => {
             <Grid item xs={12} style={{ marginTop: 8, marginBottom: 8 }}>
               <Typography paragraph className={classes.bioParagraph}>
                 <span style={{ fontWeight: 500 }}>
-                  Trabalha na {userDetails.company}
+                  {languages.find(el => el.id === language.id).text.worksAt}{' '}
+                  {userDetails.company}
                 </span>
               </Typography>
             </Grid>
@@ -108,7 +110,10 @@ const UserCardDetails = ({ userDetails }) => {
 
               <Grid item>
                 <Typography paragraph className={classes.footerText}>
-                  Disponível para contratação
+                  {
+                    languages.find(el => el.id === language.id).text
+                      .availableForHire
+                  }
                 </Typography>
               </Grid>
             </Grid>
@@ -122,7 +127,8 @@ const UserCardDetails = ({ userDetails }) => {
                 rel='noopener'
                 style={{ float: 'right' }}
               >
-                Ver mais em <span style={{ fontWeight: 600 }}>GitHub</span>
+                {languages.find(el => el.id === language.id).text.seeMoreIn}{' '}
+                <span style={{ fontWeight: 600 }}>GitHub</span>
                 ...
               </Link>
             </Grid>
