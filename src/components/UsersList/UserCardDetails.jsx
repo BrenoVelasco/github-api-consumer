@@ -46,7 +46,7 @@ const UserCardDetails = ({ userDetails }) => {
   const classes = useStyles()
 
   return (
-    <Grid container justify='center'>
+    <Grid container>
       {userDetails && userDetails.id ? (
         <>
           <Grid item xs={12} sm={6}>
@@ -84,7 +84,7 @@ const UserCardDetails = ({ userDetails }) => {
           )}
           {userDetails.location && (
             <Grid item xs={12} sm={6} style={{ marginTop: 8 }}>
-              <Grid container alignItems='flex-start'>
+              <Grid container>
                 <Grid item>
                   <MyLocationIcon className={classes.footerIcon} />
                 </Grid>
@@ -99,7 +99,7 @@ const UserCardDetails = ({ userDetails }) => {
           )}
 
           <Grid item xs={12} sm={6} style={{ marginTop: 8 }}>
-            <Grid container alignItems='flex-start'>
+            <Grid container>
               <Grid item>
                 {userDetails.hireable ? (
                   <CheckIcon className={classes.footerIcon} />
